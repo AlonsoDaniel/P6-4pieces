@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 
 namespace LyDataAcces.DAO
 {
+    /// <summary>
+    /// DaoCandidatura class.
+    /// Acceso a datos de Candidatura.
+    /// </summary>
     public class DaoCandidatura: IDao
     {
-
+        /// <value>Error?</value>
         private Exception _Errores;
         Exception IDao.Errores
         {
@@ -23,8 +27,16 @@ namespace LyDataAcces.DAO
             set => _Errores = value;
         }
 
-
-
+        /// <summary>
+        /// GetCandidatura.
+        /// Acepta candidatura.
+        /// </summary>
+        /// <remarks>
+        /// Esta clase valida la candidatura
+        /// </remarks>
+        /// <returns>
+        /// Cierto o falso.
+        /// </returns>
         public Candidatura GetCandidatura(int idCandidatura)
         {
 
@@ -35,6 +47,7 @@ namespace LyDataAcces.DAO
                     DaoUsuario daoUsuario = new DaoUsuario();
                     Candidatura retorno = new Candidatura();
 
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda de la categoria en BD
                     var canDb = db.Candidatura.Find(idCandidatura);
 
@@ -69,10 +82,13 @@ namespace LyDataAcces.DAO
  
 
         /// <summary>
-        /// Crear candidatura
+        /// Crearcandidatura.
+        /// Crea candidatura a servicio
         /// </summary>
         /// <param name="candidatura"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// Cierto o falso
+        /// </returns>
         public bool Crearcandidatura(LyBussinesModel.DTO.DTOCandidatura candidatura)
         {
 
@@ -80,7 +96,7 @@ namespace LyDataAcces.DAO
             {
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
-                    
+                    //Se realiza una introducción de datos en BD
                     ORM.Candidatura newcandidatura = new ORM.Candidatura();
 
                     newcandidatura.estado = (int?)EstadoCandidatura.PENDIENTE;
@@ -116,16 +132,22 @@ namespace LyDataAcces.DAO
         }
 
         /// <summary>
-        /// Cancelar candidatura
+        /// CancelarCandidatura.
+        /// Tranforma candidatura a cancelada
         /// </summary>
         /// <param name="idCandidatura"></param>
-        /// <returns></returns>
+        /// <param name="canceladopor"></param>
+        /// <param name="motivo"></param>
+        /// <returns>
+        /// Cierto o falso
+        /// </returns>
         public bool CancelarCandidatura(int idCandidatura,CanceladoPor canceladopor,String motivo)
         {
             try
             {
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda de la categoria en BD
                     var query = db.Candidatura.Find(idCandidatura);
                     
@@ -160,18 +182,22 @@ namespace LyDataAcces.DAO
         }
 
         /// <summary>
-        /// Aceptar Candidatura
+        /// Aceptarcandidatura.
+        /// Transforma candidatura a seleccionada.
         /// </summary>
         /// <param name="idCandidatura"></param>
         /// <param name="fechacordada"></param>
         /// <param name="horascaordadas"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// Cierto o falso
+        /// </returns>
         public bool Aceptarcandidatura(int idCandidatura, int horascaordadas, DateTime fechacordada)
         {
             try
             {
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda de la categoria en BD
                     var query = db.Candidatura.Find(idCandidatura);
 
@@ -209,12 +235,24 @@ namespace LyDataAcces.DAO
 
         }
 
+        /// <summary>
+        /// FinalizarCandidatura.
+        /// Transforma candidatura a finalizada.
+        /// </summary>
+        /// <param name="idCandidatura"></param>
+        /// <param name="horasGanadas"></param>
+        /// <param name="valoracion"></param>
+        /// <param name="comentarios"></param>
+        /// <returns>
+        /// Cierto o falso
+        /// </returns>
         public bool FinalizarCandidatura(int idCandidatura, int horasGanadas, int valoracion, String comentarios)
         {
             try
             {
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda de la categoria en BD
                     var candidatura = db.Candidatura.Find(idCandidatura);
 

@@ -1,11 +1,19 @@
-﻿Public Class FrmCrearAnuncio
+﻿
+
+''' <summary>
+''' FrmCrearAnuncio class.
+''' Formulario de creación de anuncios.
+''' </summary>
+Public Class FrmCrearAnuncio
     Public Sub ClearText()
         TxtTitulo.Text = ""
         RtxtDescripcion.Text = ""
         loadCategorias()
     End Sub
 
-
+    ''' <summary>
+    ''' loadCategorias.
+    ''' </summary>
     Private Sub loadCategorias()
         ChkList.DataSource = Nothing
         Dim dao As New LyDataAcces.DAO.DaoCategoria
@@ -17,7 +25,9 @@
         End If
     End Sub
 
-
+    ''' <summary>
+    ''' BtnCrear_Click.
+    ''' </summary>
     Private Sub BtnCrear_Click(sender As Object, e As EventArgs) Handles BtnCrear.Click
         Dim dao As New LyDataAcces.DAO.DaoServicios
         Dim nuevoServicio As New LyBussinesModel.DTO.DTOServicios With {
@@ -37,7 +47,9 @@
 
     End Sub
 
-
+    ''' <summary>
+    ''' ReadCategorias.
+    ''' </summary>
     Private Function ReadCategorias() As List(Of LyBussinesModel.DTO.DTOCategoria)
         Dim retorno As New List(Of LyBussinesModel.DTO.DTOCategoria)
         For Each cat In ChkList.CheckedItems

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace LyDataAcces.DAO
 {
+    /// <summary>
+    /// IDao interface.
+    /// Acceso a datos.
+    /// </summary>
     public interface IDao
     {
         Exception Errores

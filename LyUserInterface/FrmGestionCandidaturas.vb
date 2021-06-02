@@ -1,4 +1,9 @@
-﻿Public Class FrmGestionCandidaturas
+﻿
+''' <summary>
+''' FrmGestionCandidaturas class.
+''' Formulario de gestión y consulta de candidaturas
+''' </summary>
+Public Class FrmGestionCandidaturas
 
     Private Enum Accion As Integer
         ACEPTAR
@@ -9,11 +14,17 @@
     Private _Accion As Accion
     Private _Cantidatura As LyBussinesModel.Candidatura
 
+    ''' <summary>
+    ''' OpenDialog.
+    ''' </summary>
     Public Sub OpenDialog(idCandidatura As Integer)
         LoadCandidatura(idCandidatura)
         Me.ShowDialog()
     End Sub
 
+    ''' <summary>
+    ''' LoadCandidatura.
+    ''' </summary>
     Private Sub LoadCandidatura(idCandidatura As Integer)
         Dim dao As New LyDataAcces.DAO.DaoCandidatura
         _Cantidatura = dao.GetCandidatura(idCandidatura)
@@ -63,7 +74,9 @@
         End If
     End Sub
 
-
+    ''' <summary>
+    ''' PreparaVentana.
+    ''' </summary>
     Public Sub PreparaVentana()
         BtnAceptar.Visible = False : BtnAceptar.Enabled = False
         BtnCancelar.Visible = False : BtnCancelar.Enabled = False
@@ -81,6 +94,9 @@
         LblHorasGanadas.Text = ""
     End Sub
 
+    ''' <summary>
+    ''' BtnAccion_Click.
+    ''' </summary>
     Private Sub BtnAccion_Click(sender As Object, e As EventArgs) Handles BtnAceptar.Click, BtnCancelar.Click, BtnFinalizar.Click
 
         RtxtMotivoCancelacion.Visible = False
@@ -107,6 +123,9 @@
         PnAccion.Show()
     End Sub
 
+    ''' <summary>
+    ''' BtnAccion_Click_1.
+    ''' </summary>
     Private Sub BtnAccion_Click_1(sender As Object, e As EventArgs) Handles BtnAccion.Click
         Dim dao As New LyDataAcces.DAO.DaoCandidatura
         Dim resultado As Boolean = False

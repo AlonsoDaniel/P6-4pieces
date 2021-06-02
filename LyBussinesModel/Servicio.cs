@@ -6,18 +6,34 @@ using System.Threading.Tasks;
 
 namespace LyBussinesModel
 {
+    /// <summary>
+    /// Servicio class.
+    /// Recoge la descripción del trabajo a realizar.
+    /// </summary>
+    /// <remarks>
+    /// <para>Esta clase identifica al usuario publicador</para>
+    /// <para>Esta clase clasifica, describe y fecha el servicio</para>
+    /// </remarks>
     public class Servicio
     {
+        /// <value>Valores de identificación</value>
         private int _id;
         private Usuario _Creador;
         private List<Candidatura> _Candidaturas;
+
+        /// <value>Valores de filtraje</value>
         private List<Categoria> _Categorias;
+
+        /// <value>Valores de descripción</value>
         private String _Titulo;
         private String _Descripcion;
+
+        /// <value>Valores de fecha/tiempo</value>
         private DateTime? _FechaDeInicio;
         private bool _Finalizado;
 
         public Servicio() { }
+
         public Servicio(string titulo, 
             string descripcion, 
             DateTime? fechaDeInicio,  

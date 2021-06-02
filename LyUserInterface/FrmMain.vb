@@ -1,6 +1,13 @@
-﻿Public Class FrmMain
+﻿
+''' <summary>
+''' FrmMain class.
+''' Formulario pricipal Mi cuenta.
+''' </summary>
+Public Class FrmMain
 
-
+    ''' <summary>
+    ''' FrmMain_Load.
+    ''' </summary>
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Para abrir un apartado ha de estar el usuario logueado menos que formulario de origen sea Registro 
         'De usuario, esta condición añade seguridad a la aplicación frente a ingeniería inversa.
@@ -15,30 +22,47 @@
         LoadServicios()
     End Sub
 
+    ''' <summary>
+    ''' BtnMiCuenta_VisibleChanged.
+    ''' </summary>
     Private Sub BtnMiCuenta_VisibleChanged(sender As Object, e As EventArgs) Handles BtnMiCuenta.VisibleChanged
         If Me.Visible = True Then
             Main.AbribVentana(Me)
         End If
     End Sub
 
-
+    ''' <summary>
+    ''' BtnMiCuenta_Click.
+    ''' </summary>
     Private Sub BtnMiCuenta_Click(sender As Object, e As EventArgs) Handles BtnMiCuenta.Click
         Main.AbrirApartado(Me, FrmMiCuenta)
     End Sub
 
+    ''' <summary>
+    ''' BtnMiServicios_Click.
+    ''' </summary>
     Private Sub BtnMiServicios_Click(sender As Object, e As EventArgs) Handles BtnMiServicios.Click
         Main.AbrirApartado(Me, FrmMisServicios)
     End Sub
 
+    ''' <summary>
+    ''' BtnMisAnuncios_Click.
+    ''' </summary>
     Private Sub BtnMisAnuncios_Click(sender As Object, e As EventArgs) Handles BtnMisAnuncios.Click
         Main.AbrirApartado(Me, FrmMisAnuncios)
     End Sub
 
+    ''' <summary>
+    ''' FrmMain_Disposed.
+    ''' </summary>
     Private Sub FrmMain_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
         Me.Close()
         FrmInicioSesion.Show()
     End Sub
 
+    ''' <summary>
+    ''' LoadServicios.
+    ''' </summary>
     Public Sub LoadServicios()
         Dim dao As New LyDataAcces.DAO.DaoServicios
         Dim listaServicios As List(Of LyBussinesModel.DTO.DTOServicios)
@@ -51,6 +75,9 @@
         End If
     End Sub
 
+    ''' <summary>
+    ''' VisualizarServicio.
+    ''' </summary>
     Private Sub VisualizarServicio(id As Integer) Handles UcListaAnuncios.OnClickButton
         FrmVisualizarAnuncio.CargarAnuncio(id)
         If FrmVisualizarAnuncio.ShowDialog() = DialogResult.Yes Then
@@ -59,6 +86,9 @@
         End If
     End Sub
 
+    ''' <summary>
+    ''' BtnAddAnuncio_Click.
+    ''' </summary>
     Private Sub BtnAddAnuncio_Click(sender As Object, e As EventArgs) Handles BtnAddAnuncio.Click
         FrmCrearAnuncio.ClearText()
         FrmCrearAnuncio.ShowDialog()

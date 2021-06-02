@@ -7,6 +7,10 @@ using System.Xml;
 
 namespace LyDataAcces.XML
 {
+    /// <summary>
+    /// DaoXmlRead class.
+    /// Acceso a datos XML.
+    /// </summary>
     public class DaoXmlRead : DAO.IDao
     {
         private Exception _Errores;
@@ -31,7 +35,10 @@ namespace LyDataAcces.XML
         }
 
 
-
+        /// <summary>
+        /// Load.
+        /// Carga datos XML.
+        /// </summary>
         private bool Load(String data) {
             _DocuemntoXml = new XmlDocument();
 
@@ -47,7 +54,12 @@ namespace LyDataAcces.XML
         }
 
 
-
+        /// <summary>
+        /// ObtenerDatosServidorSql.
+        /// Administración de datos registro a bd.
+        /// </summary>
+        /// <param name="pathOrXml"></param>
+        /// <returns>Cadena</returns>
         public DatosConexion? ObtenerDatosServidorSql(String pathOrXml)
         {
             DatosConexion datos = new DatosConexion();

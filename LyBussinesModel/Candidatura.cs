@@ -4,41 +4,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace LyBussinesModel
 {
 
     public enum EstadoCandidatura { PENDIENTE, ACEPTADA, CANCELADA, FINALIZADA }
     public enum CanceladoPor { CANDIDATO, OFERTANTE }
 
+    /// <summary>
+    /// Candidatura class.
+    /// Recoge todos los datos de alta y cancelación.
+    /// </summary>
+    /// <remarks>
+    /// Esta clase registra inscripciones, cancelaciones de candidatos y permite anotaciones.
+    /// </remarks>
     public class Candidatura
     {
-
-
+        /// <value>Valores de identificación</value>
         private int _Id;
         private Usuario _Candidato;
         private Servicio _Servicio;
         private EstadoCandidatura _Estado;
 
+        /// <value>Valores de fecha/tiempo</value>
         private DateTime _FechaInscripcion;
         private int _HorasRequeridas;
 
-
-        //Valores de finalización
+        /// <value>Valores de finalización</value>
         private int _Valoracion;
         private String _Comentarios;
         private int _HorasGanadas;
 
-        //Valores de Aceptación
+        /// <value>Valores de aceptación</value>
         private DateTime _FechaAceptacion;
         private DateTime _FechaAcordadaServicio;
         private int _HorasAcordadas;
 
-
-        //Valores de Cancelacion
+        /// <value>Valores de cancelación</value>
         private DateTime _FechaDeCancelacion;
         private String _MotivoCancelacíon;
         private CanceladoPor _AutorCancelado;
+
         public Candidatura() { }
+
         public Candidatura(int id, Usuario candidato, Servicio servicio, EstadoCandidatura estado, DateTime fechaInscripcion, int horasRequeridas)
         {
             _Id = id;

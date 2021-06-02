@@ -3,8 +3,15 @@ Imports LyBussinesModel
 Imports LyBussinesModel.DTO
 Imports LyDataAcces
 
+''' <summary>
+''' FrmMiCuenta class.
+''' Formulario resumen cuenta.
+''' </summary>
 Public Class FrmMiCuenta
 
+    ''' <summary>
+    ''' CargarDatosPanelPpal.
+    ''' </summary>
     Private Sub CargarDatosPanelPpal()
         TxtNombre.Text = Main.UsuarioAutenticado.Nombre
         TxtApellidos.Text = Main.UsuarioAutenticado.Apellidos
@@ -39,6 +46,9 @@ Public Class FrmMiCuenta
 
     End Sub
 
+    ''' <summary>
+    ''' ReadCategorias.
+    ''' </summary>
     Private Function ReadCategorias() As List(Of LyBussinesModel.DTO.DTOCategoria)
         Dim retorno As New List(Of DTOCategoria)
         For Each cat In CblCategorias.CheckedItems
@@ -48,6 +58,9 @@ Public Class FrmMiCuenta
         Return retorno
     End Function
 
+    ''' <summary>
+    ''' loadCategorias.
+    ''' </summary>
     Private Sub loadCategorias()
         CblCategorias.DataSource = Nothing
         Dim dao As New LyDataAcces.DAO.DaoCategoria
@@ -59,6 +72,9 @@ Public Class FrmMiCuenta
         End If
     End Sub
 
+    ''' <summary>
+    ''' loadMarkedCategorias.
+    ''' </summary>
     Private Sub loadMarkedCategorias()
         Dim cats = Main.UsuarioAutenticado.Categorias
         Dim counter = 0
@@ -76,7 +92,9 @@ Public Class FrmMiCuenta
         Next
     End Sub
 
-
+    ''' <summary>
+    ''' FrmMisAnuncios_VisibleChanged.
+    ''' </summary>
     Sub FrmMisAnuncios_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Me.Visible = True Then
             Main.AbribVentana(Me)
@@ -86,11 +104,16 @@ Public Class FrmMiCuenta
 
     End Sub
 
-
+    ''' <summary>
+    ''' Volver_Disposed.
+    ''' </summary>
     Private Sub Volver_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
         Main.VolverAlMenu(Me)
     End Sub
 
+    ''' <summary>
+    ''' BtnEditarUser_Click.
+    ''' </summary>
     Private Sub BtnEditarUser_Click(sender As Object, e As EventArgs) Handles BtnEditarUser.Click
         TxtNombre.ReadOnly = False
         TxtApellidos.ReadOnly = False
@@ -103,6 +126,10 @@ Public Class FrmMiCuenta
         BtnEditarUser.Visible = False
         BtnSaveChanges.Enabled = True
     End Sub
+
+    ''' <summary>
+    ''' BtnCancelEdit_Click.
+    ''' </summary>
     Private Sub BtnCancelEdit_Click(sender As Object, e As EventArgs) Handles BtnCancelEdit.Click
         TxtNombre.ReadOnly = True
         TxtApellidos.ReadOnly = True
@@ -115,9 +142,17 @@ Public Class FrmMiCuenta
         BtnEditarUser.Visible = True
         BtnSaveChanges.Enabled = False
     End Sub
+
+    ''' <summary>
+    ''' BtnMiCuenta_Click.
+    ''' </summary>
     Private Sub BtnMiCuenta_Click(sender As Object, e As EventArgs) Handles BtnMiCuenta.Click
         CargarDatosPanelPpal()
     End Sub
+
+    ''' <summary>
+    ''' TxtUsuario_TextChanged.
+    ''' </summary>
     Private Sub TxtUsuario_TextChanged(sender As Object, e As EventArgs) Handles TxtUsuario.TextChanged
         'Expresión regular, solo se permite texto.
         If Regex.IsMatch(TxtUsuario.Text, "^[a-zA-Z ]*$") Then
@@ -127,6 +162,9 @@ Public Class FrmMiCuenta
         End If
     End Sub
 
+    ''' <summary>
+    ''' TxtPassword_TextChanged.
+    ''' </summary>
     Private Sub TxtPassword_TextChanged(sender As Object, e As EventArgs) Handles TxtPassword.TextChanged
         If TxtPassword.Text <> TxtPasswordConfirm.Text Then
             LblError.Text = "Las contraseñas no coinciden"
@@ -138,7 +176,9 @@ Public Class FrmMiCuenta
 
     End Sub
 
-
+    ''' <summary>
+    ''' BtnSaveChanges_Click.
+    ''' </summary>
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
 
         Dim nuevoUsuario
@@ -182,6 +222,10 @@ Public Class FrmMiCuenta
 
 
     End Sub
+
+    ''' <summary>
+    ''' BtnCategorias_Click.
+    ''' </summary>
     Private Sub BtnCategorias_Click(sender As Object, e As EventArgs) Handles BtnCategorias.Click
         PnlCategorias.Visible = True
         PnlCategorias.Enabled = True
@@ -191,6 +235,9 @@ Public Class FrmMiCuenta
         loadMarkedCategorias()
     End Sub
 
+    ''' <summary>
+    ''' BtnSaveCategorias_Click.
+    ''' </summary>
     Private Sub BtnSaveCategorias_Click(sender As Object, e As EventArgs) Handles BtnSaveCategorias.Click
 
         Dim dto As New DTOCategoria()
@@ -216,6 +263,10 @@ Public Class FrmMiCuenta
         End If
 
     End Sub
+
+    ''' <summary>
+    ''' BtnMiCartera_Click.
+    ''' </summary>
     Private Sub BtnMiCartera_Click(sender As Object, e As EventArgs) Handles BtnMiCartera.Click
         PnlCategorias.Visible = False
         PnlCategorias.Enabled = False
@@ -225,6 +276,9 @@ Public Class FrmMiCuenta
         PnlMiCartera.Enabled = True
     End Sub
 
+    ''' <summary>
+    ''' BtnVolver_Click.
+    ''' </summary>
     Private Sub BtnVolver_Click(sender As Object, e As EventArgs) Handles BtnVolver.Click
         Dispose()
     End Sub

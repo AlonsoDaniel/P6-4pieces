@@ -1,4 +1,9 @@
 ﻿Imports System.ComponentModel
+
+''' <summary>
+''' UcListaAnuncios class.
+''' Articulo anuncio.
+''' </summary>
 Public Class UcListaAnuncios
     Private Const MARGEN = 5
     Private _TextoBotones As String
@@ -15,6 +20,9 @@ Public Class UcListaAnuncios
         End Set
     End Property
 
+    ''' <summary>
+    ''' enviarId.
+    ''' </summary>
     Public Delegate Sub enviarId(id As Integer)
     Public Event OnClickButton As enviarId
     Public Sub ConstruirDatos(items As List(Of LyBussinesModel.DTO.DTOServicios))
@@ -131,7 +139,9 @@ Public Class UcListaAnuncios
     End Sub
 
 
-
+    ''' <summary>
+    ''' ClonarLabel.
+    ''' </summary>
     Private Sub ClonarLabel(titulo As String,
                             labelDestino As Label,
                             labelOrigen As Label,
@@ -149,12 +159,31 @@ Public Class UcListaAnuncios
         End With
     End Sub
 
-
+    ''' <summary>
+    ''' BtnDefaultVisualizar_Click.
+    ''' </summary>
     Private Sub BtnDefaultVisualizar_Click(sender As Object, e As EventArgs)
         RaiseEvent OnClickButton(DirectCast(sender, Button).Tag)
     End Sub
 
+    ''' <summary>
+    ''' PnPrincipal_Paint.
+    ''' </summary>
     Private Sub PnPrincipal_Paint(sender As Object, e As PaintEventArgs) Handles PnPrincipal.Paint
+
+    End Sub
+
+    ''' <summary>
+    ''' btnDefaultVisualizar_Click_1.
+    ''' </summary>
+    Private Sub btnDefaultVisualizar_Click_1(sender As Object, e As EventArgs) Handles btnDefaultVisualizar.Click
+
+    End Sub
+
+    ''' <summary>
+    ''' lblDefaultFecha_Click.
+    ''' </summary>
+    Private Sub lblDefaultFecha_Click(sender As Object, e As EventArgs) Handles lblDefaultFecha.Click
 
     End Sub
 End Class

@@ -1,16 +1,31 @@
 ﻿Imports LyBussinesModel.DTO
 
+''' <summary>
+''' FrmMisAnuncios class.
+''' Formulario resumen actividad anuncios.
+''' </summary>
 Public Class FrmMisAnuncios
 
     Private _Servicio As LyBussinesModel.DTO.DTOServiciosDetalles
     Private _Editando As Boolean = False
 
+    ''' <summary>
+    ''' FrmMisAnuncios_VisibleChanged.
+    ''' </summary>
     Sub FrmMisAnuncios_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         Main.AbribVentana(Me)
     End Sub
+
+    ''' <summary>
+    ''' IniciarVentana_Load.
+    ''' </summary>
     Private Sub IniciarVentana_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         BtnActivos_Click(sender, e)
     End Sub
+
+    ''' <summary>
+    ''' BtnActivos_Click.
+    ''' </summary>
     Private Sub BtnActivos_Click(sender As Object, e As EventArgs) Handles BtnActivos.Click
         LblSubtitulo.Text = "Activos"
         UcListaAnuncios.TextoBotones = "Gestionar"
@@ -24,6 +39,10 @@ Public Class FrmMisAnuncios
             End If
         End If
     End Sub
+
+    ''' <summary>
+    ''' BtnFinalizados_Click.
+    ''' </summary>
     Private Sub BtnFinalizados_Click(sender As Object, e As EventArgs) Handles BtnFinalizados.Click
         LblSubtitulo.Text = "Finalizados"
         UcListaAnuncios.TextoBotones = "Ver registros"
@@ -32,21 +51,39 @@ Public Class FrmMisAnuncios
         listaServicios = dao.GetListServicios(Main.UsuarioAutenticado.Id, True)
         UcListaAnuncios.ConstruirDatos(listaServicios)
     End Sub
+
+    ''' <summary>
+    ''' BtnAddAnuncio_Click.
+    ''' </summary>
     Private Sub BtnAddAnuncio_Click(sender As Object, e As EventArgs) Handles BtnAddAnuncio.Click
         FrmCrearAnuncio.ClearText()
         FrmCrearAnuncio.Show()
     End Sub
+
+    ''' <summary>
+    ''' UcListaAnuncios_OnClickButton.
+    ''' </summary>
     Private Sub UcListaAnuncios_OnClickButton(id As Integer) Handles UcListaAnuncios.OnClickButton
         LoadServicioParaGestion(id)
     End Sub
+
+    ''' <summary>
+    ''' BtnVolver_Click.
+    ''' </summary>
     Private Sub BtnVolver_Click(sender As Object, e As EventArgs) Handles BtnVolver.Click
         Dispose()
     End Sub
+
+    ''' <summary>
+    ''' Volver_Disposed.
+    ''' </summary>
     Private Sub Volver_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
         Main.VolverAlMenu(Me)
     End Sub
 
-
+    ''' <summary>
+    ''' LoadServicioParaGestion.
+    ''' </summary>
 #Region "SubApartado Gestionar Anuncio"
     Public Sub LoadServicioParaGestion(idServicio As Integer)
         PrepararSoloVisualizacion()
@@ -108,6 +145,10 @@ Public Class FrmMisAnuncios
             Me.Close()
         End If
     End Sub
+
+    ''' <summary>
+    ''' BtnFinalizar_Click.
+    ''' </summary>
     Private Sub BtnFinalizar_Click(sender As Object, e As EventArgs) Handles BtnFinalizar.Click
         Dim dao As LyDataAcces.DAO.DaoServicios = New LyDataAcces.DAO.DaoServicios()
 
@@ -117,6 +158,10 @@ Public Class FrmMisAnuncios
             MsgBox("Error producido:" + DirectCast(dao, LyDataAcces.DAO.IDao).Errores.Message)
         End If
     End Sub
+
+    ''' <summary>
+    ''' BtnSalir_Click.
+    ''' </summary>
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         PrepararSoloVisualizacion()
         PnVerGestionarAnuncio.Hide()
@@ -126,6 +171,10 @@ Public Class FrmMisAnuncios
             BtnActivos_Click(sender, e)
         End If
     End Sub
+
+    ''' <summary>
+    ''' BtnEditar_Click.
+    ''' </summary>
     Private Sub BtnEditar_Click(sender As Object, e As EventArgs) Handles BtnEditar.Click
         If Not _Editando Then
             PrepararEdicion()
@@ -134,6 +183,10 @@ Public Class FrmMisAnuncios
         End If
 
     End Sub
+
+    ''' <summary>
+    ''' PrepararEdicion.
+    ''' </summary>
     Private Sub PrepararEdicion()
         _Editando = True
         BtnFinalizar.Visible = False
@@ -150,6 +203,10 @@ Public Class FrmMisAnuncios
         RtxtDescripcion.ReadOnly = False
 
     End Sub
+
+    ''' <summary>
+    ''' PrepararSoloVisualizacion.
+    ''' </summary>
     Private Sub PrepararSoloVisualizacion()
         _Editando = False
         BtnFinalizar.Visible = True
@@ -165,6 +222,10 @@ Public Class FrmMisAnuncios
         TxtTitulo.ReadOnly = True
         RtxtDescripcion.ReadOnly = True
     End Sub
+
+    ''' <summary>
+    ''' BtnGuardar_Click.
+    ''' </summary>
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
         Dim dao As LyDataAcces.DAO.DaoServicios = New LyDataAcces.DAO.DaoServicios
         Dim datos As DTOServicios = New DTOServicios()
@@ -181,6 +242,10 @@ Public Class FrmMisAnuncios
             MsgBox("Se ha producido un error " + DirectCast(dao, LyDataAcces.DAO.IDao).Errores.Message)
         End If
     End Sub
+
+    ''' <summary>
+    ''' LoadCategorias.
+    ''' </summary>
     Private Sub LoadCategorias()
         ChkList.DataSource = Nothing
         Dim dao As New LyDataAcces.DAO.DaoCategoria
@@ -191,6 +256,10 @@ Public Class FrmMisAnuncios
             ChkList.DisplayMember = "Nombre"
         End If
     End Sub
+
+    ''' <summary>
+    ''' ReadCategorias.
+    ''' </summary>
     Private Function ReadCategorias() As List(Of LyBussinesModel.DTO.DTOCategoria)
         Dim retorno As New List(Of DTOCategoria)
         For Each cat In ChkList.CheckedItems
@@ -201,7 +270,9 @@ Public Class FrmMisAnuncios
     End Function
 
 
-
+    ''' <summary>
+    ''' DTGCandidaturas_CellContentClick.
+    ''' </summary>
     Private Sub DTGCandidaturas_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DTGCandidaturas.CellClick
         If DTGCandidaturas.SelectedRows.Count > 0 Then
             Dim selectIndex As Integer = DTGCandidaturas.SelectedRows.Item(0).Index

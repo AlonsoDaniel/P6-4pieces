@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace LyDataAcces.DAO
 {
+    /// <summary>
+    /// DaoCategoria class.
+    /// Acceso a datos de Categoria.
+    /// </summary>
     public class DaoCategoria: IDao
     {
         private Exception _Errores;
@@ -21,12 +25,13 @@ namespace LyDataAcces.DAO
             set => _Errores = value;
         }
 
- 
-        
+
+
         /// <summary>
+        /// GetAllCategorias.
         /// Lista de todas las categorías disponibles
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Listado</returns>
         public List<Categoria> GetAllCategorias() 
         { 
             try
@@ -35,6 +40,7 @@ namespace LyDataAcces.DAO
 
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda del nombre en BD
                     var query = from b in db.Categorias select b;
 
@@ -58,6 +64,7 @@ namespace LyDataAcces.DAO
         }
 
         /// <summary>
+        /// LoadCategoriaUsuario.
         /// Carga en el objeto de usuario las categorias que tiene activada
         /// </summary>
         /// <param name="usuario"></param>
@@ -76,6 +83,7 @@ namespace LyDataAcces.DAO
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
                     ORM.Usuarios userEncontrado;
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda del nombre en BD
                     var query = from b in db.Usuarios
                                 where b.id == usuario.Id
@@ -115,6 +123,7 @@ namespace LyDataAcces.DAO
         }
 
         /// <summary>
+        /// LoadCategoriaServicio.
         /// Carga en el objeto de sercio las categorías que tiene activada
         /// </summary>
         /// <param name="servicio"></param>
@@ -133,6 +142,7 @@ namespace LyDataAcces.DAO
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
                     ORM.Servicios servicioEncontrado;
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda del nombre en BD
                     var query = from b in db.Servicios
                                 where b.id == servicio.Id
@@ -177,16 +187,18 @@ namespace LyDataAcces.DAO
         }
 
         /// <summary>
+        /// CrearCategoria.
         /// Crea una nueva categoría
         /// </summary>
         /// <param name="nombre"></param>
-        /// <returns>True se se a registrado, false indica un error con la bd, o  que la categoría ya existe.</returns>
+        /// <returns>True se ha registrado, false indica un error con la bd, o  que la categoría ya existe.</returns>
         public bool CrearCategoria(String nombre)
         {
             try
             {
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda del nombre en BD
                     var query = from b in db.Categorias
                                 where b.nombre == nombre
@@ -215,6 +227,7 @@ namespace LyDataAcces.DAO
         }
 
         /// <summary>
+        /// EliminarCategoria.
         /// Elimina una categoría
         /// </summary>
         /// <param name="categoria"></param>

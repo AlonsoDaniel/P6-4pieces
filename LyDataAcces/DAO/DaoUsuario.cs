@@ -9,6 +9,10 @@ using LyBussinesModel.DTO;
 
 namespace LyDataAcces.DAO
 {
+    /// <summary>
+    /// DaoUsuario class.
+    /// Acceso a datos de Usuario.
+    /// </summary>
     public class DaoUsuario : IDao
     {
 
@@ -24,8 +28,9 @@ namespace LyDataAcces.DAO
             set => _Errores = value;
         }
 
-       
+
         /// <summary>
+        /// RegistrarUsuario.
         /// Registra un usuario en la base de datos
         /// </summary>
         /// <param name="datos">DTOUsuario con toda la información del usuario</param>
@@ -36,6 +41,7 @@ namespace LyDataAcces.DAO
             {
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda del nombre en BD
                     var query = from b in db.Usuarios
                                 where b.nombreUsuario == datos.NombreUsuario
@@ -100,6 +106,7 @@ namespace LyDataAcces.DAO
         }
 
         /// <summary>
+        /// IniciarSesion.
         /// Verificar usuario y clave para loguear usuario.
         /// </summary>
         /// <param name="usuario">Usuario.</param>
@@ -113,6 +120,7 @@ namespace LyDataAcces.DAO
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
                     String hash = Usuario.CreateHash(usuario, password);
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda del nombre en BD
                     var query = from b in db.Usuarios
                                 where b.hasPassword == hash
@@ -139,6 +147,7 @@ namespace LyDataAcces.DAO
         }
 
         /// <summary>
+        /// ModificarUsuario.
         /// Modifica un usuario
         /// </summary>
         /// <param name="editedUser"></param>
@@ -153,6 +162,7 @@ namespace LyDataAcces.DAO
                 }
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda del nombre en BD
                     var query = from b in db.Usuarios
                                 where b.id == editedUser.id
@@ -218,6 +228,7 @@ namespace LyDataAcces.DAO
         }
 
         /// <summary>
+        /// GetAllUsuarios.
         /// Consultar todos los usuarios.
         /// </summary>
         /// <returns>Devuelve una lista con todos los usuarios en el sistema</returns>
@@ -229,6 +240,7 @@ namespace LyDataAcces.DAO
 
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda del nombre en BD
                     var query = from b in db.Usuarios select b;
 
@@ -270,6 +282,7 @@ namespace LyDataAcces.DAO
         }
 
         /// <summary>
+        /// GetPerfilUsuario.
         /// Devuelve los datos de un usuario 
         /// </summary>
         /// <param name="idUsuario"> id del usuario</param>
@@ -289,6 +302,7 @@ namespace LyDataAcces.DAO
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
                     ORM.Usuarios userEncontrado;
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda del nombre en BD
                     var query = from b in db.Usuarios
                                 where b.id == idUsuario
@@ -345,6 +359,12 @@ namespace LyDataAcces.DAO
 
         }
 
+        /// <summary>
+        /// GetDetellaUsuario.
+        /// Devuelve los detalles de un usuario 
+        /// </summary>
+        /// <param name="idUsuario"> id del usuario</param>
+        /// <returns>Cadena</returns>
         public DTOUsuario GetDetellaUsuario(int idUsuario)
         {
 
@@ -360,6 +380,7 @@ namespace LyDataAcces.DAO
                 using (ORM.EFBancoTiempo db = new ORM.EFBancoTiempo())
                 {
                     ORM.Usuarios userEncontrado;
+                    /// <value>Valor consulta bd</value>
                     //Se realiza una busqueda del nombre en BD
                     var query = from b in db.Usuarios
                                 where b.id == idUsuario

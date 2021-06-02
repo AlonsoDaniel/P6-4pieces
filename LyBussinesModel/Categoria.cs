@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace LyBussinesModel
 {
+    /// <summary>
+    /// Categoria class.
+    /// Recoge el tipo de servicio para su clasificación.
+    /// </summary>
+    /// <remarks>
+    /// Esta clase se utiliza de filtraje.
+    /// </remarks>
     public class Categoria
     {
+        /// <value>Valores de identificación</value>
         private int _Id;
         private String _Nombre;
 

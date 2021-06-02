@@ -12,7 +12,10 @@ namespace LyDataAcces.ORM
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
+    /// <summary>
+    /// EFBancoTiempo class.
+    /// </summary>
     public partial class EFBancoTiempo : DbContext
     {
         public EFBancoTiempo()

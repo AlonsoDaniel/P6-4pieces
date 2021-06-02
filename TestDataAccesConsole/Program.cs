@@ -9,11 +9,17 @@ using System.Data.Entity.Validation;
 
 namespace TestDataAccesConsole
 {
+
+    /// <summary>
+    /// Program class.
+    /// </summary>
     class Program
     {
 
 
-
+        /// <summary>
+        /// Main.
+        /// </summary>
         static void Main(string[] args)
         {
             bool resultados = false;

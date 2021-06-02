@@ -7,20 +7,31 @@ using System.Threading.Tasks;
 
 namespace LyBussinesModel
 {
+    /// <summary>
+    /// Usuario class.
+    /// Recoge los datos personales de usuario.
+    /// </summary>
+    /// <remarks>
+    /// <para>Esta clase identifica al usuario</para>
+    /// <para>Esta clase almacena los datos de registro</para>
+    /// </remarks>
     public class Usuario
     {
-       
+        /// <value>Listados</value>
         private List<Servicio> _Servicios;
         private List<Candidatura> _Candidaturas;
         private List<Categoria> _Categorias;
 
+        /// <value>Valores de identificación</value>
         private int _Id;
         private String _NombreUsuario;
         private String _Nombre;
-        private String _Apellidos;
-        private int? _TiempoAcumulado;
+        private String _Apellidos;        
         private String _Telefono;
         private String _Correo;
+
+        /// <value>Valores de fecha/tiempo</value>
+        private int? _TiempoAcumulado;
         private DateTime _UltimaFiechaAcceso;
         private int _HorasAcumuladas;
 
@@ -60,14 +71,24 @@ namespace LyBussinesModel
             this._HorasAcumuladas = horasAcumuladas;
         }
 
-
+        /// <summary>
+        /// CreateHash.
+        /// Validación del registro de usuario.
+        /// </summary>
+        /// <returns>
+        /// Paquete Usuario-Contraseña.
+        /// </returns>
+        /// <param name="usuario">Cadena de caracteres.</param>
+        /// <param name="password">Cadena de caracteres.</param>
         public static String CreateHash(String usuario,string password)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
+                /// <value>Arreglo de códigos</value>
                 // ComputeHash - returns byte array  
                 byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(usuario+password));
 
+                /// <value>Cadena</value>
                 // Convert byte array to a string   
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < bytes.Length; i++)

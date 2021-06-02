@@ -1,12 +1,20 @@
 ﻿Imports System.ComponentModel
 Imports LyBussinesModel.DTO
 
+''' <summary>
+''' FrmVisualizarAnuncio class.
+''' Formulario de lectura de anuncio.
+''' </summary>
 Public Class FrmVisualizarAnuncio
+
+
     Public LanzarEdicionAnuncio As Boolean = False
 
     Private _Servicio As LyBussinesModel.DTO.DTOServiciosDetalles
 
-
+    ''' <summary>
+    ''' CargarAnuncio.
+    ''' </summary>
     Public Sub CargarAnuncio(idServicio As Integer)
         Dim Dao As New LyDataAcces.DAO.DaoServicios
         LanzarEdicionAnuncio = False
@@ -47,7 +55,9 @@ Public Class FrmVisualizarAnuncio
         End If
     End Sub
 
-
+    ''' <summary>
+    ''' BtnCrearSolicitud_Click.
+    ''' </summary>
     Private Sub BtnCrearSolicitud_Click(sender As Object, e As EventArgs) Handles BtnCrearSolicitud.Click
         If _Servicio.Creador.id = UsuarioAutenticado.Id Then
             'LANZAR ACCION PARA IR A GESTION DE ANUNCIOS+
@@ -59,10 +69,16 @@ Public Class FrmVisualizarAnuncio
         End If
     End Sub
 
+    ''' <summary>
+    ''' BtnCancel_Click.
+    ''' </summary>
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         PnEnvioSolicitud.Visible = False
     End Sub
 
+    ''' <summary>
+    ''' BtnGenerarSolicitud_Click.
+    ''' </summary>
     Private Sub BtnGenerarSolicitud_Click(sender As Object, e As EventArgs) Handles BtnGenerarSolicitud.Click
         Dim dao As New LyDataAcces.DAO.DaoCandidatura
         Dim creaConCandicatura As New DTOCandidatura With {
@@ -83,7 +99,9 @@ Public Class FrmVisualizarAnuncio
         End If
     End Sub
 
-
+    ''' <summary>
+    ''' ActualizarEstadoPuedeSolicitar.
+    ''' </summary>
     Private Sub ActualizarEstadoPuedeSolicitar(valor As ResultadoDetalleServicioPuedeSolicitarse)
         Select Case valor
             Case ResultadoDetalleServicioPuedeSolicitarse.PUEDE
@@ -99,6 +117,8 @@ Public Class FrmVisualizarAnuncio
         End Select
     End Sub
 
+    ''' <summary>FrmVisualizarAnuncio_Closing.
+    ''' </summary>
     Private Sub FrmVisualizarAnuncio_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         LblUsuario.Text = ""
         LblTitulo.Text = ""
